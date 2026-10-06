@@ -62,7 +62,7 @@ func (r *Report) GenerateMonthlyReport(transactions []Transaction) (map[string]f
 			return nil, nil, err
 		}
 
-		monthKey := tx.CreateAt.Format("2006-01")
+		monthKey := tx.CreateAt.Format("2006-Jan")
 		reportMap[monthKey] += ccAmount
 	}
 
