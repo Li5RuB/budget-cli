@@ -4,13 +4,20 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"budget-cli/internal/app"
 	"budget-cli/internal/db"
 )
 
 func main() {
-	database, err := db.InitDB("budget.db")
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatalf("Can't take user directory: %v", err)
+	}
+
+	dbPath := filepath.Join(homeDir, ".budget.db")
+	database, err := db.InitDB(dbPath)
 	if err != nil {
 		log.Fatalf("init db error: %v", err)
 	}
